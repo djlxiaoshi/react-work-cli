@@ -1,0 +1,47 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/react-dom": "16.0.4",
+    "antd-mobile": "2.1.6",
+    "axios": "0.18.0",
+    "echarts": "4.0.4",
+    "izitoast": "1.2.0",
+    "node-sass-chokidar": "1.0.1",
+    "npm-run-all": "4.1.2",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-router-dom": "4.2.2",
+    "react-scripts-ts": "2.13.0",
+    "rxjs": "5.5.6"
+  },
+  "scripts": {
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start-js": "react-app-rewired start --scripts-version react-scripts-ts",
+    "start": "cross-env NODE_ENV=prod npm-run-all cp-environment -p watch-css start-js",
+    "startDev": "cross-env NODE_ENV=dev npm-run-all cp-environment -p watch-css start-js",
+    "startLocal": "cross-env NODE_ENV=local npm-run-all cp-environment -p watch-css start-js",
+    "startTest": "cross-env NODE_ENV=test npm-run-all cp-environment -p watch-css start-js",
+    "build-js": "react-app-rewired build --scripts-version react-scripts-ts",
+    "build": "cross-env NODE_ENV=prod npm-run-all cp-environment build-css build-js",
+    "buildLocal": "cross-env NODE_ENV=Local npm-run-all cp-environment build-css build-js",
+    "buildDev": "cross-env NODE_ENV=dev npm-run-all cp-environment build-css build-js",
+    "buildTest": "cross-env NODE_ENV=test npm-run-all cp-environment build-css build-js",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts-ts eject",
+    "cp-environment": "node cp-environment.js"
+  },
+  "devDependencies": {
+    "@types/jest": "22.2.0",
+    "@types/node": "9.4.6",
+    "@types/react": "16.0.40",
+    "babel-plugin-import": "1.6.5",
+    "cross-env": "5.1.3",
+    "react-app-rewired": "1.5.0",
+    "shelljs": "0.8.1",
+    "ts-import-plugin": "1.4.4",
+    "typescript": "2.7.2"
+  }
+}
