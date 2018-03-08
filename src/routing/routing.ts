@@ -17,10 +17,10 @@ interface Route {
   to?: string;
 }
 export const routing: Route[] = [
-  {path: '/home', name: '主页', component: Home},
-  {path: '/about', name: '关于我', component: About},
-  {path: '/contact' , name: '联系方式', component: Contact},
-  {path: '/chart' , name: '图', component: Charts},
+  {path: '/home', name: '主页', component: Home, icon: 'fa-home'},
+  {path: '/about', name: '关于我', component: About, icon: 'fa-user'},
+  {path: '/contact' , name: '联系方式', component: Contact, icon: 'fa-phone'},
+  {path: '/chart' , name: '图', component: Charts, icon: 'fa-chart-pie'},
   {path: '/axios' , name: '请求', component: Axios},
   {path: '/', redirect: true, to: 'home'}
 ];

@@ -1,0 +1,17 @@
+.app-header-wrap{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  .bars-btn{
+    flex: 0 0 40px;
+    line-height: 40px;
+    text-align: center;
+  }
+  .page-title{
+    flex: 1;
+    margin: 0;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+  }
+}

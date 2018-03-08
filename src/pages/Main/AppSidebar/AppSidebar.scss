@@ -1,0 +1,18 @@
+.app-sidebar{
+  width: 200px;
+  height: 100vh;
+  font-size: 14px;
+  .am-list-body{
+    height: 100%;
+    .am-list-content{
+      font-size: 16px;
+      a{
+        color: #797878 !important;
+      }
+    }
+  }
+  .icon-wrap{
+    display: inline-block;
+    padding-right: 10px;
+  }
+}
