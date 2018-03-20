@@ -6,6 +6,8 @@ import axios from 'axios';
 import { Observable } from 'rxjs';
 import iziToastService from './izi-toast.service';
 
+const NProgress = require('nprogress');
+
 const CancelToken = axios.CancelToken;
 
 import { environment }  from '../../environments/environment';
@@ -15,6 +17,7 @@ class FetchService {
   get (url, params, hasWarning?) {
     let cancel;
     return Observable.create(observer => {
+      NProgress.start();
       const apiURL = this.getFullUrl(url);
       axios.get(apiURL, {
         params: params,
@@ -25,14 +28,23 @@ class FetchService {
         cancelToken: new CancelToken(function executor(c) {
           cancel = c;
         })
-      }).then(response => {
-        observer.next(response);
+      }).then(res => {
+        NProgress.done();
+        if (res.data.error_code === 0) {
+          observer.next(res.data);
+        } else {
+          if (hasWarning) {
+            iziToastService.error('Error', `${res.data.message}`);
+          }
+          observer.error(res.data);
+        }
         observer.complete();
       }).catch(error => {
-        observer.error(error);
+        NProgress.done();
         if (hasWarning) {
           iziToastService.error('Error', `${error.message}`);
         }
+        observer.error(error);
         observer.complete();
       });
 
@@ -46,8 +58,7 @@ class FetchService {
     let cancel;
     return Observable.create(observer => {
       const apiURL = this.getFullUrl(url);
-      axios.post(apiURL, {
-        params: params,
+      axios.post(apiURL, params, {
         headers: {
           // 'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -55,14 +66,25 @@ class FetchService {
         cancelToken: new CancelToken(function executor(c) {
           cancel = c;
         })
-      }).then(data => {
-        observer.next(data);
+      }).then(res => {
+        NProgress.done();
+
+        if (res.data.error_code === 0) {
+          observer.next(res.data);
+        } else {
+          if (hasWarning) {
+            iziToastService.error('Error', `${res.data.message}`);
+          }
+          observer.error(res.data);
+        }
         observer.complete();
       }).catch(error => {
-        observer.error(error);
+        NProgress.done();
+
         if (hasWarning) {
           iziToastService.error('Error', `${error.message}`);
         }
+        observer.error(error);
         observer.complete();
       });
 

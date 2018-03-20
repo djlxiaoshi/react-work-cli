@@ -4,5 +4,5 @@
  */
 export const environment = {
     production: true,
-    apiUrl: '//dev.server.com/'
+    apiUrl: '//server.com/'
 };
